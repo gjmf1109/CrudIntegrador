@@ -13,7 +13,7 @@ public interface ProyectoDAO {
 
     public ProyectoDTO encontrarPorId(int id);
 
-    public void insertarProyecto(int tareaId, String nombreTarea, String descripcion, int proyectoId);
+    public void insertarProyecto(int proyectoId, String nombreProyecto, String descripcion, String fechaInicio, String fechaFin);
 
     public void insertarProyecto(ProyectoDTO proyecto);
 

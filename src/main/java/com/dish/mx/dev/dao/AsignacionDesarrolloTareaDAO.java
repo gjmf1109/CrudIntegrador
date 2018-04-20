@@ -15,9 +15,9 @@ public interface AsignacionDesarrolloTareaDAO {
 
     public void insertarAsignacionDesarrolloTarea(int asignacionId, int desarrolladorId, int tareaId);
 
-    public void insertarEmpleado(AsignacionDesarrolloTareaDTO signacion);
+    public void insertarAsignacionDesarrolloTarea(AsignacionDesarrolloTareaDTO asignacion);
 
-    public int actualizarEmpleado(AsignacionDesarrolloTareaDTO asignacion);
+    public int actualizarAsignacionDesarrolloTarea(AsignacionDesarrolloTareaDTO asignacion);
 
     public int eliminarTodos();
 

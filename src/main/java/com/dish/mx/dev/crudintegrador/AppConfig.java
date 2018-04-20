@@ -1,5 +1,13 @@
 package com.dish.mx.dev.crudintegrador;
 
+import com.dish.mx.dev.dao.AsignacionDesarrolloTareaDAO;
+import com.dish.mx.dev.dao.DesarrolladorDAO;
+import com.dish.mx.dev.dao.ProyectoDAO;
+import com.dish.mx.dev.dao.TareaDAO;
+import com.dish.mx.dev.daoimpl.AsignacionDesarrolloTareaDAOImpl;
+import com.dish.mx.dev.daoimpl.DesarrolladorDAOImpl;
+import com.dish.mx.dev.daoimpl.ProyectoDAOImpl;
+import com.dish.mx.dev.daoimpl.TareaDAOImpl;
 import javax.sql.DataSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -102,11 +110,33 @@ public class AppConfig {
      *
      * @since 0.0.1
      */
-//    @Bean("empleadoDAOImpl2")
-//    EmpleadoDAO empleadoDAOImpl(JdbcTemplate jdbcTemplate) {
-//        EmpleadoDAOImpl dao = new EmpleadoDAOImpl();
-//        dao.setJdbcTemplate(jdbcTemplate);
-//        return dao;
-//    }
+    @Bean("asignacionDesarrolloTareaDAOImpl")
+    AsignacionDesarrolloTareaDAO asignacionDesarrolloTareaDAOImpl(JdbcTemplate jdbcTemplate) {
+        AsignacionDesarrolloTareaDAOImpl dao = new AsignacionDesarrolloTareaDAOImpl();
+        dao.setJdbcTemplate(jdbcTemplate);
+        return dao;
+    }
+    
+    @Bean("tareaDAOImpl")
+    TareaDAO tareaDAOImpl(JdbcTemplate jdbcTemplate) {
+        TareaDAOImpl dao = new TareaDAOImpl();
+        dao.setJdbcTemplate(jdbcTemplate);
+        return dao;
+    }
+    
+    @Bean("desarrolladorDAOImpl")
+    DesarrolladorDAO desarrolladorDAOImpl(JdbcTemplate jdbcTemplate) {
+        DesarrolladorDAOImpl dao = new DesarrolladorDAOImpl();
+        dao.setJdbcTemplate(jdbcTemplate);
+        return dao;
+    }
+    
+    @Bean("proyectoDAOImpl")
+    ProyectoDAO proyectoDAOImpl(JdbcTemplate jdbcTemplate) {
+        ProyectoDAOImpl dao = new ProyectoDAOImpl();
+        dao.setJdbcTemplate(jdbcTemplate);
+        return dao;
+    }   
+    
 }
 
