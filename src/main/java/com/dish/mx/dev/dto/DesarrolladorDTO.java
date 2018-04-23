@@ -113,7 +113,7 @@ public class DesarrolladorDTO {
 
     @Override
     public String toString() {
-        return "desarrolladorId=" + desarrolladorId + "\tnumEmpleado=" + numEmpleado + "\tnombre=" + nombre + "\tapPaterno=" + apPaterno + "\napMaterno=" + apMaterno + "\nproyectoId=" + proyectoId + "\n";
+        return "desarrolladorId=" + desarrolladorId + "\tnumEmpleado=" + numEmpleado + "\tnombre=" + nombre + "\tapPaterno=" + apPaterno + "\tapMaterno=" + apMaterno + "\tproyectoId=" + proyectoId + "\n";
     }
 
 }

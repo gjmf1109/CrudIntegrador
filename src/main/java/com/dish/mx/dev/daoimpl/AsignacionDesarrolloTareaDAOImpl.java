@@ -71,6 +71,11 @@ public class AsignacionDesarrolloTareaDAOImpl implements AsignacionDesarrolloTar
     public int eliminarPorID(int id) {
         return getJdbcTemplate().update("DELETE FROM asignacion_desarrollador_tarea WHERE asignacion_id = ?", id);
     }
+    
+    @Override
+    public int eliminarPorID2(int id) {
+        return getJdbcTemplate().update("DELETE FROM asignacion_desarrollador_tarea WHERE desarrollador_id = ?", id);
+    }
 
     /**
      * @return the jdbcTemplate

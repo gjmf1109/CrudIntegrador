@@ -75,10 +75,6 @@ public class CasosMenuTarea {
         numTarea = getLeer().nextInt();
         setTarea(getTareaDAO().encontrarPorId(numTarea));
 
-        System.out.print("\nNúmero actual de tarea: " + getTarea().getTareaId());
-        System.out.print("\nNúmero nuevo de tarea (Digite el mismo número si no quiere cambiarlo): ");
-        getTarea().setTareaId(getLeer().nextInt());
-
         System.out.print("\nNombre actual de tarea: " + getTarea().getNombreTarea());
         System.out.print("\nNombre nuevo de tarea (Digite el mismo nombre si no quiere cambiarlo): ");
         getTarea().setNombreTarea(getLeer().next());
@@ -109,8 +105,8 @@ public class CasosMenuTarea {
             System.out.print("Ingrese el número de tarea del registro a eliminar: ");
             //Lee el ID por consola para buscar el registro en la base de datos
             //y lo elimine
-            int tarea = getLeer().nextInt();
-            getTareaDAO().eliminarPorID(tarea);
+            int tarea1 = getLeer().nextInt();
+            getTareaDAO().eliminarPorID(tarea1);
             System.out.println("Tarea eliminada!");
             setImprimir(getTareaDAO().encontrarTodos());
             System.out.println(getImprimir());

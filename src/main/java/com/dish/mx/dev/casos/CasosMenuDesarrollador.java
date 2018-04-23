@@ -1,5 +1,6 @@
 package com.dish.mx.dev.casos;
 
+import com.dish.mx.dev.daoimpl.AsignacionDesarrolloTareaDAOImpl;
 import com.dish.mx.dev.daoimpl.DesarrolladorDAOImpl;
 import com.dish.mx.dev.dto.DesarrolladorDTO;
 import java.util.List;
@@ -18,6 +19,10 @@ public class CasosMenuDesarrollador {
     private DesarrolladorDTO desa;
     private List<DesarrolladorDTO> imprimir;
     private DesarrolladorDTO imprimir2;
+    
+    @Autowired
+    @Qualifier("asignacionDesarrolloTareaDAOImpl")
+    private AsignacionDesarrolloTareaDAOImpl asignaDAO;
 
     @Autowired
     @Qualifier("desarrolladorDAOImpl")
@@ -77,10 +82,6 @@ public class CasosMenuDesarrollador {
         System.out.print("¿Cuál es el número de desarrollador?: ");
         numDesa = getLeer().nextInt();
         setDesa(getDesaDAO().encontrarPorId(numDesa));
-
-        System.out.print("\nNúmero actual del desarrollador: " + getDesa().getDesarrolladorId());
-        System.out.print("\nNúmero nuevo del desarrollador (Digite el mismo número si no quiere cambiarlo): ");
-        getDesa().setDesarrolladorId(getLeer().nextInt());
         
         System.out.print("\nNúmero de empleado actual de desarrollador: " + getDesa().getNumEmpleado());
         System.out.print("\nNúmero nuevo de empleado del desarrollador (Digite el mismo número si no quiere cambiarlo, debe ser de 4 dígitos): ");
@@ -112,16 +113,16 @@ public class CasosMenuDesarrollador {
         //Se guarda la opción elegida por el usuario.
         int elim = getLeer().nextInt();
         if (elim == 1) {
+            getAsignaDAO().eliminarTodos();
             getDesaDAO().eliminarTodos();
             System.out.println("Todos los registros de desarrollador han sido eliminados!");
             setImprimir(getDesaDAO().encontrarTodos());
             System.out.println(getImprimir());
         } else {
             System.out.print("Ingrese el número del desarrollador del registro a eliminar: ");
-            //Lee el ID por consola para buscar el registro en la base de datos
-            //y lo elimine
-            int desa = getLeer().nextInt();
-            getDesaDAO().eliminarPorID(desa);
+            int desa1 = getLeer().nextInt();
+            getAsignaDAO().eliminarPorID2(desa1);
+            getDesaDAO().eliminarPorID(desa1);
             System.out.println("Desarrollador eliminado!");
             setImprimir(getDesaDAO().encontrarTodos());
             System.out.println(getImprimir());
@@ -198,4 +199,19 @@ public class CasosMenuDesarrollador {
         this.leer = leer;
     }
 
+    /**
+     * @return the asignaDAO
+     */
+    public AsignacionDesarrolloTareaDAOImpl getAsignaDAO() {
+        return asignaDAO;
+    }
+
+    /**
+     * @param asignaDAO the asignaDAO to set
+     */
+    public void setAsignaDAO(AsignacionDesarrolloTareaDAOImpl asignaDAO) {
+        this.asignaDAO = asignaDAO;
+    }
+
+    
 }

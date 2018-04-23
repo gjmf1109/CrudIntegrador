@@ -22,5 +22,7 @@ public interface AsignacionDesarrolloTareaDAO {
     public int eliminarTodos();
 
     public int eliminarPorID(int id);
+    
+    public int eliminarPorID2(int id);
 
 }

@@ -49,43 +49,49 @@ public class CasosMenuAsignacionDesarrolloTarea {
         AsignacionDesarrolloTareaDTO asignacionInsertar;
         asignacionInsertar = new AsignacionDesarrolloTareaDTO();
 
-        System.out.print("Ingresa el número de asignación: ");
-        int asigna = getLeer().nextInt();
-        System.out.print("Ingresa el número de desarrollador: ");
-        int desarrollador = getLeer().nextInt();
-        System.out.print("Ingresa el número de tarea: ");
-        int tarea = getLeer().nextInt();
-        asignacionInsertar.setAsignacionId(asigna);
-        asignacionInsertar.setDesarrolladorId(desarrollador);
-        asignacionInsertar.setTareaId(tarea);
-        getAsignaDAO().insertarAsignacionDesarrolloTarea(asignacionInsertar);
-        System.out.println("Empleado registrado!");
-        setImprimir(getAsignaDAO().encontrarTodos());
-        System.out.println(getImprimir());
+        try {
+
+            System.out.print("Ingresa el número de asignación: ");
+            int asigna = getLeer().nextInt();
+            System.out.print("Ingresa el número de desarrollador: ");
+            int desarrollador = getLeer().nextInt();
+            System.out.print("Ingresa el número de tarea: ");
+            int tarea = getLeer().nextInt();
+            asignacionInsertar.setAsignacionId(asigna);
+            asignacionInsertar.setDesarrolladorId(desarrollador);
+            asignacionInsertar.setTareaId(tarea);
+            getAsignaDAO().insertarAsignacionDesarrolloTarea(asignacionInsertar);
+            System.out.println("Empleado registrado!");
+            setImprimir(getAsignaDAO().encontrarTodos());
+            System.out.println(getImprimir());
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 
     public void actualizar() {
         int numAsigna;
         int resp = 0;
 
-        System.out.print("¿Cuál es el número de asignación?: ");
-        numAsigna = getLeer().nextInt();
-        setAsignacion(getAsignaDAO().encontrarPorId(numAsigna));
+        try {
 
-        System.out.print("\nNúmero actual de asignación: " + getAsignacion().getAsignacionId());
-        System.out.print("\nNúmero nuevo de asignación (Digite el mismo número si no quiere cambiarlo): ");
-        getAsignacion().setAsignacionId(getLeer().nextInt());
+            System.out.print("¿Cuál es el número de asignación?: ");
+            numAsigna = getLeer().nextInt();
+            setAsignacion(getAsignaDAO().encontrarPorId(numAsigna));
 
-        System.out.print("\nNúmero actual de desarrollador: " + getAsignacion().getDesarrolladorId());
-        System.out.print("\nNúmero nuevo de desarrollador (Digite el mismo número si no quiere cambiarlo): ");
-        getAsignacion().setDesarrolladorId(getLeer().nextInt());
+            System.out.print("\nNúmero actual de desarrollador: " + getAsignacion().getDesarrolladorId());
+            System.out.print("\nNúmero nuevo de desarrollador (Digite el mismo número si no quiere cambiarlo): ");
+            getAsignacion().setDesarrolladorId(getLeer().nextInt());
 
-        System.out.print("\nNúmero actual de tarea: " + getAsignacion().getTareaId());
-        System.out.print("\nNuevo número de tarea (Digite el mismo número si no quiere cambiarlo): ");
-        getAsignacion().setTareaId(getLeer().nextInt());
+            System.out.print("\nNúmero actual de tarea: " + getAsignacion().getTareaId());
+            System.out.print("\nNuevo número de tarea (Digite el mismo número si no quiere cambiarlo): ");
+            getAsignacion().setTareaId(getLeer().nextInt());
 
-        resp = getAsignaDAO().actualizarAsignacionDesarrolloTarea(getAsignacion());
-        System.out.println("Asignación actualizada!\n Se actualizaron " + resp + " líneas");
+            resp = getAsignaDAO().actualizarAsignacionDesarrolloTarea(getAsignacion());
+            System.out.println("Asignación actualizada!\n Se actualizaron " + resp + " líneas");
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 
     public void eliminar() {

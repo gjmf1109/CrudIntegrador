@@ -110,28 +110,28 @@ public class AppConfig {
      *
      * @since 0.0.1
      */
-    @Bean("asignacionDesarrolloTareaDAOImpl")
+    @Bean("asignacionDesarrolloTareaDAOImpl2")
     AsignacionDesarrolloTareaDAO asignacionDesarrolloTareaDAOImpl(JdbcTemplate jdbcTemplate) {
         AsignacionDesarrolloTareaDAOImpl dao = new AsignacionDesarrolloTareaDAOImpl();
         dao.setJdbcTemplate(jdbcTemplate);
         return dao;
     }
     
-    @Bean("tareaDAOImpl")
+    @Bean("tareaDAOImpl2")
     TareaDAO tareaDAOImpl(JdbcTemplate jdbcTemplate) {
         TareaDAOImpl dao = new TareaDAOImpl();
         dao.setJdbcTemplate(jdbcTemplate);
         return dao;
     }
     
-    @Bean("desarrolladorDAOImpl")
+    @Bean("desarrolladorDAOImpl2")
     DesarrolladorDAO desarrolladorDAOImpl(JdbcTemplate jdbcTemplate) {
         DesarrolladorDAOImpl dao = new DesarrolladorDAOImpl();
         dao.setJdbcTemplate(jdbcTemplate);
         return dao;
     }
     
-    @Bean("proyectoDAOImpl")
+    @Bean("proyectoDAOImpl2")
     ProyectoDAO proyectoDAOImpl(JdbcTemplate jdbcTemplate) {
         ProyectoDAOImpl dao = new ProyectoDAOImpl();
         dao.setJdbcTemplate(jdbcTemplate);

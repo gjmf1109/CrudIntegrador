@@ -75,10 +75,6 @@ public class CasosMenuProyecto {
         numProy = getLeer().nextInt();
         setProyecto(getProyDAO().encontrarPorId(numProy));
 
-        System.out.print("\nNúmero actual del proyecto: " + getProyecto().getProyectoId());
-        System.out.print("\nNúmero nuevo del proyecto (Digite el mismo número si no quiere cambiarlo): ");
-        getProyecto().setProyectoId(getLeer().nextInt());
-        
         System.out.print("\nNombre actual del proyecto: " + getProyecto().getNombreProyecto());
         System.out.print("\nNuevo nombre del proyecto (Digite el mismo nombre si no quiere cambiarlo): ");
         getProyecto().setNombreProyecto(getLeer().next());

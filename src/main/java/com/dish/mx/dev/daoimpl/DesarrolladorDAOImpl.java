@@ -61,7 +61,7 @@ public class DesarrolladorDAOImpl implements DesarrolladorDAO {
         //Un update me regresa el número de filas actualizadas, es por eso
         //que el resultado es asignado a una variable de tipo int.
         return resp = getJdbcTemplate().update("UPDATE desarrollador SET num_empleado = ?, "
-                + "nombre = ?, ap_paterno = ?, ap_materno = ?, proyecto_id = ?"
+                + "nombre = ?, ap_paterno = ?, ap_materno = ?, proyecto_id = ? "
                 + "WHERE  desarrollador_id = ?", new Object[]{tarea.getNumEmpleado(), tarea.getNombre(), tarea.getApPaterno(),
                     tarea.getApMaterno(), tarea.getProyectoId(), tarea.getDesarrolladorId()});
     }
