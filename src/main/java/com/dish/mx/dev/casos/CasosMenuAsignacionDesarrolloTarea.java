@@ -9,8 +9,15 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 /**
+ * Clase en la que definimos métodos para la obtención de datos introducidos por
+ * consola por el usuario.
  *
- * @author gerardo.martinez
+ * @version 0.0.1
+ *
+ * @author Gerardo Martinez &lt;gerardo.martinez@dish.com.mx&gt;
+ *
+ * @since 0.0.1
+ *
  */
 @Component
 public class CasosMenuAsignacionDesarrolloTarea {
@@ -25,9 +32,25 @@ public class CasosMenuAsignacionDesarrolloTarea {
 
     private Scanner leer = new Scanner(System.in);
 
+    /**
+     * Constructor vacío de la clase
+     *
+     * @author Gerardo Martinez &lt;gerardo.martinez@dish.com.mx&gt;
+     *
+     * @since 0.0.1
+     */
     public CasosMenuAsignacionDesarrolloTarea() {
     }
 
+    /**
+     * Método en el que se le da al usuario la opción de consultar todos los
+     * elementos de la tabla de la base de datos o consultar alguno de acuerdo a
+     * un id
+     *
+     * @author Gerardo Martinez &lt;gerardo.martinez@dish.com.mx&gt;
+     *
+     * @since 0.0.1
+     */
     public void consultar() {
         //Le imprimimos al usuario las opciones
         System.out.println("Retornar todos los registros de la tabla --> 1");
@@ -45,6 +68,14 @@ public class CasosMenuAsignacionDesarrolloTarea {
         }
     }
 
+    /**
+     * Método en el que se le piden al usuario datos para insertar un registro
+     * en la tabla
+     *
+     * @author Gerardo Martinez &lt;gerardo.martinez@dish.com.mx&gt;
+     *
+     * @since 0.0.1
+     */
     public void insertar() {
         AsignacionDesarrolloTareaDTO asignacionInsertar;
         asignacionInsertar = new AsignacionDesarrolloTareaDTO();
@@ -69,6 +100,14 @@ public class CasosMenuAsignacionDesarrolloTarea {
         }
     }
 
+    /**
+     * Método en el que se le piden al usuario datos para actualizar todos o
+     * algunos campos del registro.
+     *
+     * @author Gerardo Martinez &lt;gerardo.martinez@dish.com.mx&gt;
+     *
+     * @since 0.0.1
+     */
     public void actualizar() {
         int numAsigna;
         int resp = 0;
@@ -94,25 +133,39 @@ public class CasosMenuAsignacionDesarrolloTarea {
         }
     }
 
+    /**
+     * Método en el que se le da al usuario la opción de eliminar todos los
+     * elementos de la tabla de la base de datos o eliminar alguno de acuerdo a
+     * un id
+     *
+     * @author Gerardo Martinez &lt;gerardo.martinez@dish.com.mx&gt;
+     *
+     * @since 0.0.1
+     */
     public void eliminar() {
         System.out.println("Eliminar todos los registros de la tabla --> 1");
         System.out.println("Eliminar un registro de la tabla por el número de asignación --> 2");
         //Se guarda la opción elegida por el usuario.
         int elim = getLeer().nextInt();
-        if (elim == 1) {
-            getAsignaDAO().eliminarTodos();
-            System.out.println("Todos los registros de asignación han sido eliminados!");
-            setImprimir(getAsignaDAO().encontrarTodos());
-            System.out.println(getImprimir());
-        } else {
-            System.out.print("Ingrese el número de asignación del registro a eliminar: ");
-            //Lee el ID por consola para buscar el registro en la base de datos
-            //y lo elimine
-            int emp = getLeer().nextInt();
-            getAsignaDAO().eliminarPorID(emp);
-            System.out.println("Asignación eliminada!");
-            setImprimir(getAsignaDAO().encontrarTodos());
-            System.out.println(getImprimir());
+
+        try {
+            if (elim == 1) {
+                getAsignaDAO().eliminarTodos();
+                System.out.println("Todos los registros de asignación han sido eliminados!");
+                setImprimir(getAsignaDAO().encontrarTodos());
+                System.out.println(getImprimir());
+            } else {
+                System.out.print("Ingrese el número de asignación del registro a eliminar: ");
+                //Lee el ID por consola para buscar el registro en la base de datos
+                //y lo elimine
+                int emp = getLeer().nextInt();
+                getAsignaDAO().eliminarPorID(emp);
+                System.out.println("Asignación eliminada!");
+                setImprimir(getAsignaDAO().encontrarTodos());
+                System.out.println(getImprimir());
+            }
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
         }
     }
 

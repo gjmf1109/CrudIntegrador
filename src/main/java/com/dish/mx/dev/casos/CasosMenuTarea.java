@@ -1,5 +1,6 @@
 package com.dish.mx.dev.casos;
 
+import com.dish.mx.dev.daoimpl.AsignacionDesarrolloTareaDAOImpl;
 import com.dish.mx.dev.daoimpl.TareaDAOImpl;
 import com.dish.mx.dev.dto.TareaDTO;
 import java.util.List;
@@ -9,8 +10,15 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 /**
+ * Clase en la que definimos métodos para la obtención de datos introducidos por
+ * consola por el usuario.
  *
- * @author gerardo.martinez
+ * @version 0.0.1
+ *
+ * @author Gerardo Martinez &lt;gerardo.martinez@dish.com.mx&gt;
+ *
+ * @since 0.0.1
+ *
  */
 @Component
 public class CasosMenuTarea {
@@ -20,96 +28,171 @@ public class CasosMenuTarea {
     private TareaDTO imprimir2;
 
     @Autowired
+    @Qualifier("asignacionDesarrolloTareaDAOImpl")
+    private AsignacionDesarrolloTareaDAOImpl asignaDAO;
+
+    @Autowired
     @Qualifier("tareaDAOImpl")
     private TareaDAOImpl tareaDAO;
 
     private Scanner leer = new Scanner(System.in);
 
+    /**
+     * Constructor vacío de la clase
+     *
+     * @author Gerardo Martinez &lt;gerardo.martinez@dish.com.mx&gt;
+     *
+     * @since 0.0.1
+     */
     public CasosMenuTarea() {
     }
 
+    /**
+     * Método en el que se le da al usuario la opción de consultar todos los
+     * elementos de la tabla de la base de datos o consultar alguno de acuerdo a
+     * un id
+     *
+     * @author Gerardo Martinez &lt;gerardo.martinez@dish.com.mx&gt;
+     *
+     * @since 0.0.1
+     */
     public void consultar() {
+        Scanner leer1 = new Scanner(System.in);
+
         //Le imprimimos al usuario las opciones
         System.out.println("Retornar todos los registros de la tabla --> 1");
         System.out.println("Buscar por número de tarea --> 2");
         //Leemos la opción que introdujó el usuario en consola
-        int eleccion = getLeer().nextInt();
+        //int eleccion = getLeer().nextInt();
+        int eleccion = leer1.nextInt();
         if (eleccion == 1) {
             setImprimir(getTareaDAO().encontrarTodos());
             System.out.println(getImprimir());
         } else {
             System.out.print("Ingresa el número de tarea: ");
-            int id = getLeer().nextInt();
+            //int id = getLeer().nextInt();
+            int id = leer1.nextInt();
             setImprimir2(getTareaDAO().encontrarPorId(id));
             System.out.println(getImprimir2());
         }
     }
 
+    /**
+     * Método en el que se le piden al usuario datos para insertar un registro
+     * en la tabla
+     *
+     * @author Gerardo Martinez &lt;gerardo.martinez@dish.com.mx&gt;
+     *
+     * @since 0.0.1
+     */
     public void insertar() {
         TareaDTO tareaInsertar;
         tareaInsertar = new TareaDTO();
 
-        System.out.print("Ingresa el número de tarea: ");
-        int tareaNum = getLeer().nextInt();
-        System.out.print("Ingresa el nombre de la tarea: ");
-        String nombre = getLeer().next();
-        System.out.print("Ingresa la descripción de la tarea (Debe ser menor a 100 caracteres): ");
-        String des = getLeer().next();
-        System.out.print("Ingresa el número de proyecto al cual esta designada la tarea: ");
-        int proy = getLeer().nextInt();
-        tareaInsertar.setTareaId(tareaNum);
-        tareaInsertar.setNombreTarea(nombre);
-        tareaInsertar.setDescripcion(des);
-        tareaInsertar.setProyectoId(proy);
-        getTareaDAO().insertarTarea(tareaInsertar);
-        System.out.println("Tarea registrada!");
-        setImprimir(getTareaDAO().encontrarTodos());
-        System.out.println(getImprimir());
+        Scanner leer2 = new Scanner(System.in);
+
+        try {
+            System.out.print("Ingresa el número de tarea: ");
+            int tareaNum = leer2.nextInt();
+            System.out.print("Ingresa el nombre de la tarea: ");
+            String nombre = leer2.next();
+            System.out.print("Ingresa el número de proyecto al cual esta designada la tarea: ");
+            int proy = leer2.nextInt();
+            leer2.nextLine();//Limpiar buffer
+            System.out.print("Ingresa la descripción de la tarea (Debe ser menor a 100 caracteres): ");
+            String des = leer2.nextLine();
+            tareaInsertar.setTareaId(tareaNum);
+            tareaInsertar.setNombreTarea(nombre);
+            tareaInsertar.setDescripcion(des);
+            tareaInsertar.setProyectoId(proy);
+            getTareaDAO().insertarTarea(tareaInsertar);
+            System.out.println("Tarea registrada!");
+            setImprimir(getTareaDAO().encontrarTodos());
+            System.out.println(getImprimir());
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 
+    /**
+     * Método en el que se le piden al usuario datos para actualizar todos o
+     * algunos campos del registro.
+     *
+     * @author Gerardo Martinez &lt;gerardo.martinez@dish.com.mx&gt;
+     *
+     * @since 0.0.1
+     */
     public void actualizar() {
         int numTarea;
         int resp = 0;
 
-        System.out.print("¿Cuál es el número de tarea?: ");
-        numTarea = getLeer().nextInt();
-        setTarea(getTareaDAO().encontrarPorId(numTarea));
+        Scanner leer3 = new Scanner(System.in);
 
-        System.out.print("\nNombre actual de tarea: " + getTarea().getNombreTarea());
-        System.out.print("\nNombre nuevo de tarea (Digite el mismo nombre si no quiere cambiarlo): ");
-        getTarea().setNombreTarea(getLeer().next());
+        try {
+            System.out.print("¿Cuál es el número de tarea?: ");
+            numTarea = leer3.nextInt();
+            setTarea(getTareaDAO().encontrarPorId(numTarea));
 
-        System.out.print("\nDescripción actual de tarea: " + getTarea().getDescripcion());
-        System.out.print("\nNueva descripción de tarea (La descripción no puede superar los 100 caracteres): ");
-        getTarea().setDescripcion(getLeer().next());
-        
-        System.out.print("\nNúmero actual de proyecto al cual esta designada la tarea: " + getTarea().getProyectoId());
-        System.out.print("\nNuevo número de proyecto (Digite el mismo nombre si no quiere cambiarlo): ");
-        getTarea().setProyectoId(getLeer().nextInt());
+            System.out.print("\nNombre actual de tarea: " + getTarea().getNombreTarea());
+            System.out.print("\nNombre nuevo de tarea (Digite el mismo nombre si no quiere cambiarlo): ");
+            String nomTarea = leer3.next();
+            getTarea().setNombreTarea(nomTarea);
+            leer3.nextLine();//Limpiar buffer
+            System.out.print("\nNúmero actual de proyecto al cual esta designada la tarea: " + getTarea().getProyectoId());
+            System.out.print("\nNuevo número de proyecto (Digite el mismo número si no quiere cambiarlo): ");
+            int proyec = leer3.nextInt();
+            getTarea().setProyectoId(proyec);
+            leer3.nextLine();//Limpiar buffer
+            System.out.print("\nDescripción actual de tarea: " + getTarea().getDescripcion());
+            System.out.print("\nNueva descripción de tarea (La descripción no puede superar los 100 caracteres): ");
+            String descrip = leer3.nextLine();
+            getTarea().setDescripcion(descrip);
 
-        resp = getTareaDAO().actualizarTarea(getTarea());
-        System.out.println("Tarea actualizada!\n Se actualizaron " + resp + " líneas");
+            resp = getTareaDAO().actualizarTarea(getTarea());
+            System.out.println("Tarea actualizada!\n Se actualizaron " + resp + " líneas");
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
     }
-    
+
+    /**
+     * Método en el que se le da al usuario la opción de eliminar todos los
+     * elementos de la tabla de la base de datos o eliminar alguno de acuerdo a
+     * un id
+     *
+     * @author Gerardo Martinez &lt;gerardo.martinez@dish.com.mx&gt;
+     *
+     * @since 0.0.1
+     */
     public void eliminar() {
+        Scanner leer4 = new Scanner(System.in);
+
         System.out.println("Eliminar todos los registros de la tabla --> 1");
         System.out.println("Eliminar un registro de la tabla por el número de tarea --> 2");
         //Se guarda la opción elegida por el usuario.
-        int elim = getLeer().nextInt();
-        if (elim == 1) {
-            getTareaDAO().eliminarTodos();
-            System.out.println("Todos los registros de tarea han sido eliminados!");
-            setImprimir(getTareaDAO().encontrarTodos());
-            System.out.println(getImprimir());
-        } else {
-            System.out.print("Ingrese el número de tarea del registro a eliminar: ");
-            //Lee el ID por consola para buscar el registro en la base de datos
-            //y lo elimine
-            int tarea1 = getLeer().nextInt();
-            getTareaDAO().eliminarPorID(tarea1);
-            System.out.println("Tarea eliminada!");
-            setImprimir(getTareaDAO().encontrarTodos());
-            System.out.println(getImprimir());
+//        int elim = getLeer().nextInt();
+        int elim = leer4.nextInt();
+
+        try {
+            if (elim == 1) {
+                getAsignaDAO().eliminarTodos();
+                getTareaDAO().eliminarTodos();
+                System.out.println("Todos los registros de tarea han sido eliminados!");
+                setImprimir(getTareaDAO().encontrarTodos());
+                System.out.println(getImprimir());
+            } else {
+                System.out.print("Ingrese el número de tarea del registro a eliminar: ");
+                //Lee el ID por consola para buscar el registro en la base de datos
+                //y lo elimine
+                int tarea1 = leer4.nextInt();
+                getAsignaDAO().eliminarPorID3(tarea1);
+                getTareaDAO().eliminarPorID(tarea1);
+                System.out.println("Tarea eliminada!");
+                setImprimir(getTareaDAO().encontrarTodos());
+                System.out.println(getImprimir());
+            }
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
         }
     }
 
@@ -181,6 +264,20 @@ public class CasosMenuTarea {
      */
     public void setLeer(Scanner leer) {
         this.leer = leer;
+    }
+
+    /**
+     * @return the asignaDAO
+     */
+    public AsignacionDesarrolloTareaDAOImpl getAsignaDAO() {
+        return asignaDAO;
+    }
+
+    /**
+     * @param asignaDAO the asignaDAO to set
+     */
+    public void setAsignaDAO(AsignacionDesarrolloTareaDAOImpl asignaDAO) {
+        this.asignaDAO = asignaDAO;
     }
 
 }

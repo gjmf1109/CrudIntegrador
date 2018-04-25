@@ -1,8 +1,15 @@
 package com.dish.mx.dev.dto;
 
 /**
+ * Clase en la que definimos los atributos de la tabla a manipular en la base de
+ * datos.
  *
- * @author gerardo.martinez
+ * @version 0.0.1
+ *
+ * @author Gerardo Martinez &lt;gerardo.martinez@dish.com.mx&gt;
+ *
+ * @since 0.0.1
+ *
  */
 public class AsignacionDesarrolloTareaDTO {
 
@@ -10,9 +17,26 @@ public class AsignacionDesarrolloTareaDTO {
     private int desarrolladorId;
     private int tareaId;
 
+    /**
+     * Constructor vacío de la clase.
+     *
+     * @author Gerardo Martinez &lt;gerardo.martinez@dish.com.mx&gt;
+     *
+     * @since 0.0.1
+     */
     public AsignacionDesarrolloTareaDTO() {
     }
 
+    /**
+     * Constructor de la clase con argumentos.
+     *
+     * @author Gerardo Martinez &lt;gerardo.martinez@dish.com.mx&gt;
+     * @param asignacionId
+     * @param desarrolladorId
+     * @param tareaId
+     * 
+     * @since 0.0.1
+     */
     public AsignacionDesarrolloTareaDTO(int asignacionId, int desarrolladorId, int tareaId) {
         this.asignacionId = asignacionId;
         this.desarrolladorId = desarrolladorId;

@@ -6,8 +6,15 @@ import java.sql.SQLException;
 import org.springframework.jdbc.core.RowMapper;
 
 /**
+ * Clase en la que se obtienen los datos de la clase signacionDesarrolloTarea y los retorna para
+ * poder utilizarlos en donde sean requeridos.
  *
- * @author gerardo.martinez
+ * @version 0.0.1
+ *
+ * @author Gerardo Martinez &lt;gerardo.martinez@dish.com.mx%gt;
+ *
+ * @since 0.0.1
+ *
  */
 public class AsignacionDesarrolloTareaRowMapper implements RowMapper<AsignacionDesarrolloTareaDTO> {
     
@@ -18,7 +25,7 @@ public class AsignacionDesarrolloTareaRowMapper implements RowMapper<AsignacionD
      * @param rs
      * @param rowNum
      * 
-     * @return Regresa un objeto del tipo EmpleadoDTO con los registros obtenidos
+     * @return Regresa un objeto del tipo signacionDesarrolloTareaDTO con los registros obtenidos
      * de la base de datos.
      *
      * @author Gerardo Martinez &lt;gerardo.martinez@dish.com.mx&gt;

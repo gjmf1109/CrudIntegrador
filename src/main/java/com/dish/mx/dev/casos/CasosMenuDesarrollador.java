@@ -10,8 +10,15 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 /**
+ * Clase en la que definimos métodos para la obtención de datos introducidos por
+ * consola por el usuario.
  *
- * @author gerardo.martinez
+ * @version 0.0.1
+ *
+ * @author Gerardo Martinez &lt;gerardo.martinez@dish.com.mx&gt;
+ *
+ * @since 0.0.1
+ *
  */
 @Component
 public class CasosMenuDesarrollador {
@@ -19,7 +26,7 @@ public class CasosMenuDesarrollador {
     private DesarrolladorDTO desa;
     private List<DesarrolladorDTO> imprimir;
     private DesarrolladorDTO imprimir2;
-    
+
     @Autowired
     @Qualifier("asignacionDesarrolloTareaDAOImpl")
     private AsignacionDesarrolloTareaDAOImpl asignaDAO;
@@ -30,6 +37,25 @@ public class CasosMenuDesarrollador {
 
     private Scanner leer = new Scanner(System.in);
 
+    /**
+     * Constructor vacío de la clase
+     *
+     * @author Gerardo Martinez &lt;gerardo.martinez@dish.com.mx&gt;
+     *
+     * @since 0.0.1
+     */
+    public CasosMenuDesarrollador() {
+    }
+
+    /**
+     * Método en el que se le da al usuario la opción de consultar todos los
+     * elementos de la tabla de la base de datos o consultar alguno de acuerdo a
+     * un id
+     *
+     * @author Gerardo Martinez &lt;gerardo.martinez@dish.com.mx&gt;
+     *
+     * @since 0.0.1
+     */
     public void consultar() {
         //Le imprimimos al usuario las opciones
         System.out.println("Retornar todos los registros de la tabla --> 1");
@@ -46,86 +72,124 @@ public class CasosMenuDesarrollador {
             System.out.println(getImprimir2());
         }
     }
-    
+
+    /**
+     * Método en el que se le piden al usuario datos para insertar un registro
+     * en la tabla
+     *
+     * @author Gerardo Martinez &lt;gerardo.martinez@dish.com.mx&gt;
+     *
+     * @since 0.0.1
+     */
     public void insertar() {
         DesarrolladorDTO desaInsertar;
         desaInsertar = new DesarrolladorDTO();
 
-        System.out.print("Ingresa el número del desarrollador: ");
-        int desaNum = getLeer().nextInt();
-        System.out.print("Ingresa el número de empleado: ");
-        int numEmp = getLeer().nextInt();
-        System.out.print("Ingresa el nombre del desarrollador: ");
-        String nom = getLeer().next();
-        System.out.print("Ingresa el apellido paterno del desarrollador: ");
-        String apPat = getLeer().next();
-        System.out.print("Ingresa el apellido materno del desarrollador: ");
-        String apMat = getLeer().next();
-        System.out.print("Ingresa el número de proyecto al cual esta designado el desarrollador: ");
-        int proy = getLeer().nextInt();
-        desaInsertar.setDesarrolladorId(desaNum);
-        desaInsertar.setNumEmpleado(numEmp);
-        desaInsertar.setNombre(nom);
-        desaInsertar.setApPaterno(apPat);
-        desaInsertar.setApMaterno(apMat);
-        desaInsertar.setProyectoId(proy);
-        getDesaDAO().insertarDesarrollador(desaInsertar);
-        System.out.println("Desarrollador registrado!");
-        setImprimir(getDesaDAO().encontrarTodos());
-        System.out.println(getImprimir());
+        try {
+            System.out.print("Ingresa el número del desarrollador: ");
+            int desaNum = getLeer().nextInt();
+            System.out.print("Ingresa el número de empleado: ");
+            int numEmp = getLeer().nextInt();
+            System.out.print("Ingresa el nombre del desarrollador: ");
+            String nom = getLeer().next();
+            System.out.print("Ingresa el apellido paterno del desarrollador: ");
+            String apPat = getLeer().next();
+            System.out.print("Ingresa el apellido materno del desarrollador: ");
+            String apMat = getLeer().next();
+            System.out.print("Ingresa el número de proyecto al cual esta designado el desarrollador: ");
+            int proy = getLeer().nextInt();
+            desaInsertar.setDesarrolladorId(desaNum);
+            desaInsertar.setNumEmpleado(numEmp);
+            desaInsertar.setNombre(nom);
+            desaInsertar.setApPaterno(apPat);
+            desaInsertar.setApMaterno(apMat);
+            desaInsertar.setProyectoId(proy);
+            getDesaDAO().insertarDesarrollador(desaInsertar);
+            System.out.println("Desarrollador registrado!");
+            setImprimir(getDesaDAO().encontrarTodos());
+            System.out.println(getImprimir());
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
     }
-    
+
+    /**
+     * Método en el que se le piden al usuario datos para actualizar todos o
+     * algunos campos del registro.
+     *
+     * @author Gerardo Martinez &lt;gerardo.martinez@dish.com.mx&gt;
+     *
+     * @since 0.0.1
+     */
     public void actualizar() {
         int numDesa;
         int resp = 0;
 
-        System.out.print("¿Cuál es el número de desarrollador?: ");
-        numDesa = getLeer().nextInt();
-        setDesa(getDesaDAO().encontrarPorId(numDesa));
-        
-        System.out.print("\nNúmero de empleado actual de desarrollador: " + getDesa().getNumEmpleado());
-        System.out.print("\nNúmero nuevo de empleado del desarrollador (Digite el mismo número si no quiere cambiarlo, debe ser de 4 dígitos): ");
-        getDesa().setNumEmpleado(getLeer().nextInt());
+        try {
+            System.out.print("¿Cuál es el número de desarrollador?: ");
+            numDesa = getLeer().nextInt();
+            setDesa(getDesaDAO().encontrarPorId(numDesa));
 
-        System.out.print("\nNombre actual del desarrollador: " + getDesa().getNombre());
-        System.out.print("\nNombre nuevo del desarrollador (Digite el mismo nombre si no quiere cambiarlo): ");
-        getDesa().setNombre(getLeer().next());
+            System.out.print("\nNúmero de empleado actual de desarrollador: " + getDesa().getNumEmpleado());
+            System.out.print("\nNúmero nuevo de empleado del desarrollador (Digite el mismo número si no quiere cambiarlo, debe ser de 4 dígitos): ");
+            getDesa().setNumEmpleado(getLeer().nextInt());
 
-        System.out.print("\nApellido paterno actual del desarrollador: " + getDesa().getApPaterno());
-        System.out.print("\nNuevo apellido paterno del desarrollador (Digite el mismo apellido si no quiere cambiarlo): ");
-        getDesa().setApPaterno(getLeer().next());
-        
-        System.out.print("\nApellido materno actual del desarrollador: " + getDesa().getApMaterno());
-        System.out.print("\nNuevo apellido materno del desarrollador (Digite el mismo apellido si no quiere cambiarlo): ");
-        getDesa().setApMaterno(getLeer().next());
-        
-        System.out.print("\nNúmero actual de proyecto al cual esta designado el desarrollador: " + getDesa().getProyectoId());
-        System.out.print("\nNuevo número de proyecto (Digite el mismo numero si no quiere cambiarlo): ");
-        getDesa().setProyectoId(getLeer().nextInt());
+            System.out.print("\nNombre actual del desarrollador: " + getDesa().getNombre());
+            System.out.print("\nNombre nuevo del desarrollador (Digite el mismo nombre si no quiere cambiarlo): ");
+            getDesa().setNombre(getLeer().next());
 
-        resp = getDesaDAO().actualizarDesarrollador(getDesa());
-        System.out.println("Desarrollador actualizado!\n Se actualizaron " + resp + " líneas");
+            System.out.print("\nApellido paterno actual del desarrollador: " + getDesa().getApPaterno());
+            System.out.print("\nNuevo apellido paterno del desarrollador (Digite el mismo apellido si no quiere cambiarlo): ");
+            getDesa().setApPaterno(getLeer().next());
+
+            System.out.print("\nApellido materno actual del desarrollador: " + getDesa().getApMaterno());
+            System.out.print("\nNuevo apellido materno del desarrollador (Digite el mismo apellido si no quiere cambiarlo): ");
+            getDesa().setApMaterno(getLeer().next());
+
+            System.out.print("\nNúmero actual de proyecto al cual esta designado el desarrollador: " + getDesa().getProyectoId());
+            System.out.print("\nNuevo número de proyecto (Digite el mismo numero si no quiere cambiarlo): ");
+            getDesa().setProyectoId(getLeer().nextInt());
+
+            resp = getDesaDAO().actualizarDesarrollador(getDesa());
+            System.out.println("Desarrollador actualizado!\n Se actualizaron " + resp + " líneas");
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
     }
-    
+
+    /**
+     * Método en el que se le da al usuario la opción de eliminar todos los
+     * elementos de la tabla de la base de datos o eliminar alguno de acuerdo a
+     * un id
+     *
+     * @author Gerardo Martinez &lt;gerardo.martinez@dish.com.mx&gt;
+     *
+     * @since 0.0.1
+     */
     public void eliminar() {
         System.out.println("Eliminar todos los registros de la tabla --> 1");
         System.out.println("Eliminar un registro de la tabla por el número del desarrollador --> 2");
         //Se guarda la opción elegida por el usuario.
         int elim = getLeer().nextInt();
-        if (elim == 1) {
-            getAsignaDAO().eliminarTodos();
-            getDesaDAO().eliminarTodos();
-            System.out.println("Todos los registros de desarrollador han sido eliminados!");
-            setImprimir(getDesaDAO().encontrarTodos());
-            System.out.println(getImprimir());
-        } else {
-            System.out.print("Ingrese el número del desarrollador del registro a eliminar: ");
-            int desa1 = getLeer().nextInt();
-            getAsignaDAO().eliminarPorID2(desa1);
-            getDesaDAO().eliminarPorID(desa1);
-            System.out.println("Desarrollador eliminado!");
-            setImprimir(getDesaDAO().encontrarTodos());
-            System.out.println(getImprimir());
+
+        try {
+            if (elim == 1) {
+                getAsignaDAO().eliminarTodos();
+                getDesaDAO().eliminarTodos();
+                System.out.println("Todos los registros de desarrollador han sido eliminados!");
+                setImprimir(getDesaDAO().encontrarTodos());
+                System.out.println(getImprimir());
+            } else {
+                System.out.print("Ingrese el número del desarrollador del registro a eliminar: ");
+                int desa1 = getLeer().nextInt();
+                getAsignaDAO().eliminarPorID2(desa1);
+                getDesaDAO().eliminarPorID(desa1);
+                System.out.println("Desarrollador eliminado!");
+                setImprimir(getDesaDAO().encontrarTodos());
+                System.out.println(getImprimir());
+            }
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
         }
     }
 
@@ -213,5 +277,4 @@ public class CasosMenuDesarrollador {
         this.asignaDAO = asignaDAO;
     }
 
-    
 }

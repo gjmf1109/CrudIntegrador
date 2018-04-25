@@ -24,11 +24,28 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 /**
+ * Clase principal que muestra al usuario las opciones que puede
+ * elegir para realizar operaciones en la base de datos.
  *
- * @author gerardo.martinez
+ * @version 0.0.1
+ *
+ * @author Gerardo Martinez &lt;gerardo.martinez@dish.com.mx%gt;
+ *
+ * @since 0.0.1
+ *
  */
 public class MainApp {
 
+    /**
+     * Este es el método principal con el que corre la aplicación para el manejo
+     * de la base de datos.
+     *
+     * @author Gerardo Martinez &lt;gerardo.martinez@dish.com.mx&gt;
+     * 
+     * @param args
+     *
+     * @since 0.0.1
+     */
     public static void main(String args[]) {
         AsignacionDesarrolloTareaDAOImpl asigDAO;
         DesarrolladorDAOImpl desaDAO;
@@ -58,6 +75,8 @@ public class MainApp {
         casosDesarrollador = ctx.getBean(CasosMenuDesarrollador.class);
         casosTarea = ctx.getBean(CasosMenuTarea.class);
         casosProyecto = ctx.getBean(CasosMenuProyecto.class);
+        
+        Scanner leer = new Scanner(System.in);
 
         int a = 1;
 
@@ -69,13 +88,14 @@ public class MainApp {
             System.out.println("4.- Proyecto");
             System.out.println("5.- Salir");
 
-            Scanner leer = new Scanner(System.in);
             int opcion = leer.nextInt();
 
             switch (opcion) {
 
                 case 1:
                     int b = 1;
+                    
+                    Scanner leer1 = new Scanner(System.in);
 
                     do {
 
@@ -86,7 +106,7 @@ public class MainApp {
                         System.out.println("4.- Eliminar una asignación de la tabla");
                         System.out.println("5.- Salir");
 
-                        int opcion1 = leer.nextInt();
+                        int opcion1 = leer1.nextInt();
 
                         switch (opcion1) {
                             case 1:
@@ -123,6 +143,8 @@ public class MainApp {
                 case 2:
                     int c = 1;
 
+                    Scanner leer2 = new Scanner(System.in);
+                    
                     do {
 
                         System.out.println("¿Que quieres realizar en la tabla de la base de datos?");
@@ -132,7 +154,7 @@ public class MainApp {
                         System.out.println("4.- Eliminar una tarea de la tabla");
                         System.out.println("5.- Salir");
 
-                        int opcion2 = leer.nextInt();
+                        int opcion2 = leer2.nextInt();
 
                         switch (opcion2) {
                             case 1:
@@ -168,6 +190,8 @@ public class MainApp {
 
                 case 3:
                     int d = 1;
+                    
+                    Scanner leer3 = new Scanner(System.in);
 
                     do {
 
@@ -178,7 +202,7 @@ public class MainApp {
                         System.out.println("4.- Eliminar un desarrollador de la tabla");
                         System.out.println("5.- Salir");
 
-                        int opcion3 = leer.nextInt();
+                        int opcion3 = leer3.nextInt();
 
                         switch (opcion3) {
                             case 1:
@@ -214,17 +238,19 @@ public class MainApp {
 
                 case 4:
                     int e = 1;
+                    
+                    Scanner leer4 = new Scanner(System.in);
 
                     do {
 
                         System.out.println("¿Que quieres realizar en la tabla de la base de datos?");
                         System.out.println("1.- Consultar a la tabla");
-                        System.out.println("2.- Insertar un desarrollador a la tabla");
-                        System.out.println("3.- Actualizar los datos de un desarrollador");
-                        System.out.println("4.- Eliminar un desarrollador de la tabla");
+                        System.out.println("2.- Insertar un proyecto a la tabla");
+                        System.out.println("3.- Actualizar los datos de un proyecto");
+                        System.out.println("4.- Eliminar un proyecto de la tabla");
                         System.out.println("5.- Salir");
 
-                        int opcion4 = leer.nextInt();
+                        int opcion4 = leer4.nextInt();
 
                         switch (opcion4) {
                             case 1:

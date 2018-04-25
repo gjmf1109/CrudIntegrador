@@ -1,8 +1,15 @@
 package com.dish.mx.dev.dto;
 
 /**
+ * Clase en la que definimos los atributos de la tabla a manipular en la base de
+ * datos.
  *
- * @author gerardo.martinez
+ * @version 0.0.1
+ *
+ * @author Gerardo Martinez &lt;gerardo.martinez@dish.com.mx&gt;
+ *
+ * @since 0.0.1
+ *
  */
 public class ProyectoDTO {
 
@@ -12,9 +19,28 @@ public class ProyectoDTO {
     private String fechaInicio;
     private String fechaFin;
 
+    /**
+     * Constructor vacío de la clase.
+     *
+     * @author Gerardo Martinez &lt;gerardo.martinez@dish.com.mx&gt;
+     *
+     * @since 0.0.1
+     */
     public ProyectoDTO() {
     }
 
+    /**
+     * Constructor de la clase con argumentos.
+     *
+     * @author Gerardo Martinez &lt;gerardo.martinez@dish.com.mx&gt;
+     * @param proyectoId
+     * @param nombreProyecto
+     * @param descripcion
+     * @param fechaInicio
+     * @param fechaFin
+     * 
+     * @since 0.0.1
+     */
     public ProyectoDTO(int proyectoId, String nombreProyecto, String descripcion, String fechaInicio, String fechaFin) {
         this.proyectoId = proyectoId;
         this.nombreProyecto = nombreProyecto;

@@ -4,8 +4,15 @@ import com.dish.mx.dev.dto.ProyectoDTO;
 import java.util.List;
 
 /**
+ * Interface que tiene algunos métodos para que se puedan implementar
+ * en alguna clase a su conveniencia.
  *
- * @author gerardo.martinez
+ * @version 0.0.1
+ *
+ * @author Gerardo Martinez &lt;gerardo.martinez@dish.com.mx%gt;
+ *
+ * @since 0.0.1
+ *
  */
 public interface ProyectoDAO {
 
@@ -22,4 +29,12 @@ public interface ProyectoDAO {
     public int eliminarTodos();
 
     public int eliminarPorID(int id);
+    
+    public int eliminarPorID2(int id);
+    
+    public int eliminarPorID3(int id);
+    
+    public int eliminarPorID4(int id);
+    
+    public int eliminarPorID5(int id);
 }

@@ -1,8 +1,15 @@
 package com.dish.mx.dev.dto;
 
 /**
+ * Clase en la que definimos los atributos de la tabla a manipular en la base de
+ * datos.
  *
- * @author gerardo.martinez
+ * @version 0.0.1
+ *
+ * @author Gerardo Martinez &lt;gerardo.martinez@dish.com.mx&gt;
+ *
+ * @since 0.0.1
+ *
  */
 public class DesarrolladorDTO {
 
@@ -13,9 +20,29 @@ public class DesarrolladorDTO {
     private String apMaterno;
     private int proyectoId;
 
+    /**
+     * Constructor vacío de la clase.
+     *
+     * @author Gerardo Martinez &lt;gerardo.martinez@dish.com.mx&gt;
+     *
+     * @since 0.0.1
+     */
     public DesarrolladorDTO() {
     }
 
+    /**
+     * Constructor de la clase con argumentos.
+     *
+     * @author Gerardo Martinez &lt;gerardo.martinez@dish.com.mx&gt;
+     * @param desarrolladorId
+     * @param numEmpleado
+     * @param nombre
+     * @param apPaterno
+     * @param apMaterno
+     * @param proyectoId
+     * 
+     * @since 0.0.1
+     */
     public DesarrolladorDTO(int desarrolladorId, int numEmpleado, String nombre,
             String apPaterno, String apMaterno, int proyectoId) {
 

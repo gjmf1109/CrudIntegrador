@@ -100,11 +100,12 @@ public class AppConfig {
 
     /**
      * Método para poder utilizar la variable jdbcTemplate en mi clase
-     * EmpleadoDAO y realizar las acividades necesarias con dicha variable.
+     * AsignacionDesarrolloTareaDAOImpl y realizar las acividades necesarias 
+     * con dicha variable.
      *
      * @param jdbcTemplate
-     * @return Regresa una instancia de EmpleadoDAO pasándole como argumento la
-     * variable jdbcTemplate para poder interactuar con la base de datos.
+     * @return Regresa una instancia de AsignacionDesarrolloTareaDAOImpl pasándole como 
+     * argumento la variable jdbcTemplate para poder interactuar con la base de datos.
      *
      * @author Gerardo Martinez &lt;gerardo.martinez@dish.com.mx&gt;
      *
@@ -117,6 +118,19 @@ public class AppConfig {
         return dao;
     }
     
+    /**
+     * Método para poder utilizar la variable jdbcTemplate en mi clase
+     * TareaDAOImpl y realizar las acividades necesarias 
+     * con dicha variable.
+     *
+     * @param jdbcTemplate
+     * @return Regresa una instancia de TareaDAOImpl pasándole como 
+     * argumento la variable jdbcTemplate para poder interactuar con la base de datos.
+     *
+     * @author Gerardo Martinez &lt;gerardo.martinez@dish.com.mx&gt;
+     *
+     * @since 0.0.1
+     */
     @Bean("tareaDAOImpl2")
     TareaDAO tareaDAOImpl(JdbcTemplate jdbcTemplate) {
         TareaDAOImpl dao = new TareaDAOImpl();
@@ -124,6 +138,19 @@ public class AppConfig {
         return dao;
     }
     
+    /**
+     * Método para poder utilizar la variable jdbcTemplate en mi clase
+     * DesarrolladorDAOImpl y realizar las acividades necesarias 
+     * con dicha variable.
+     *
+     * @param jdbcTemplate
+     * @return Regresa una instancia de DesarrolladorDAOImpl pasándole como 
+     * argumento la variable jdbcTemplate para poder interactuar con la base de datos.
+     *
+     * @author Gerardo Martinez &lt;gerardo.martinez@dish.com.mx&gt;
+     *
+     * @since 0.0.1
+     */
     @Bean("desarrolladorDAOImpl2")
     DesarrolladorDAO desarrolladorDAOImpl(JdbcTemplate jdbcTemplate) {
         DesarrolladorDAOImpl dao = new DesarrolladorDAOImpl();
@@ -131,6 +158,19 @@ public class AppConfig {
         return dao;
     }
     
+    /**
+     * Método para poder utilizar la variable jdbcTemplate en mi clase
+     * ProyectoDAOImpl y realizar las acividades necesarias 
+     * con dicha variable.
+     *
+     * @param jdbcTemplate
+     * @return Regresa una instancia de ProyectoDAOImpl pasándole como 
+     * argumento la variable jdbcTemplate para poder interactuar con la base de datos.
+     *
+     * @author Gerardo Martinez &lt;gerardo.martinez@dish.com.mx&gt;
+     *
+     * @since 0.0.1
+     */
     @Bean("proyectoDAOImpl2")
     ProyectoDAO proyectoDAOImpl(JdbcTemplate jdbcTemplate) {
         ProyectoDAOImpl dao = new ProyectoDAOImpl();

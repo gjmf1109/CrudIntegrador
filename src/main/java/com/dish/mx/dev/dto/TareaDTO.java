@@ -1,8 +1,15 @@
 package com.dish.mx.dev.dto;
 
 /**
+ * Clase en la que definimos los atributos de la tabla a manipular en la base de
+ * datos.
  *
- * @author gerardo.martinez
+ * @version 0.0.1
+ *
+ * @author Gerardo Martinez &lt;gerardo.martinez@dish.com.mx&gt;
+ *
+ * @since 0.0.1
+ *
  */
 public class TareaDTO {
 
@@ -11,9 +18,27 @@ public class TareaDTO {
     private String descripcion;
     private int proyectoId;
 
+    /**
+     * Constructor vacío de la clase.
+     *
+     * @author Gerardo Martinez &lt;gerardo.martinez@dish.com.mx&gt;
+     *
+     * @since 0.0.1
+     */
     public TareaDTO() {
     }
 
+    /**
+     * Constructor de la clase con argumentos.
+     *
+     * @author Gerardo Martinez &lt;gerardo.martinez@dish.com.mx&gt;
+     * @param tareaId
+     * @param nombreTarea
+     * @param descripcion
+     * @param proyectoId
+     * 
+     * @since 0.0.1
+     */
     public TareaDTO(int tareaId, String nombreTarea, String descripcion, int proyectoId) {
         this.tareaId = tareaId;
         this.nombreTarea = nombreTarea;
