@@ -94,9 +94,11 @@ public class CasosMenuProyecto {
     public void insertar() {
         ProyectoDTO proyInsertar;
         proyInsertar = new ProyectoDTO();
-
+        int x = 0;
+        int y = 0;
+        
         try {
-            getLeer().nextLine();
+            getLeer().nextLine();//Limpiar buffer
             System.out.print("Ingresa el número de proyecto: ");
             int proyNum = getLeer().nextInt();
             getLeer().nextLine(); //Limpiar buffer
@@ -104,15 +106,45 @@ public class CasosMenuProyecto {
             String nomProy = getLeer().nextLine();
             System.out.print("Ingresa la descripcion del proyecto (No debe rebasar los 100 caracteres): ");
             String des = getLeer().nextLine();
-            System.out.print("Ingresa la fecha de inicio del proyecto (Formato yyyy-mm-dd): ");
-            String fechIni = getLeer().next();
-            System.out.print("Ingresa la fecha final del proyecto (Formato yyyy-mm-dd): ");
-            String fechFin = getLeer().next();
+            
+            do {
+                x=0;
+                System.out.print("Ingresa la fecha de inicio del proyecto (Formato yyyy-mm-dd): ");
+                String fechIni = getLeer().next();
+                String[] separa = fechIni.split("-");
+                int anio = Integer.parseInt(separa[0]);
+                int mes = Integer.parseInt(separa[1]);
+                int dia = Integer.parseInt(separa[2]);
+                if (anio < 2020 && anio > 1990 && mes < 13 && mes > 0 && dia < 32 && dia > 0) {
+                    proyInsertar.setFechaInicio(fechIni);
+                    x = 1;
+                } else {
+                    System.out.println("Formato incorrecto, ingresa de nuevo la fecha");
+                    x = 0;
+                }
+            } while (x == 0);
+            
+            do {
+                y = 0;
+                getLeer().nextLine(); //Limpiar buffer
+                System.out.print("Ingresa la fecha final del proyecto (Formato yyyy-mm-dd): ");
+                String fechFin = getLeer().next();
+                String[] separa1 = fechFin.split("-");
+                int anio1 = Integer.parseInt(separa1[0]);
+                int mes1 = Integer.parseInt(separa1[1]);
+                int dia1 = Integer.parseInt(separa1[2]);
+                if (anio1 < 2020 && anio1 > 1990 && mes1 < 13 && mes1 > 0 && dia1 < 32 && dia1 > 0) {
+                    proyInsertar.setFechaFin(fechFin);
+                    y = 1;
+                } else {
+                    System.out.println("Formato incorrecto, ingresa de nuevo la fecha");
+                    y = 0;
+                }
+            } while (y == 0);
+            
             proyInsertar.setProyectoId(proyNum);
             proyInsertar.setNombreProyecto(nomProy);
             proyInsertar.setDescripcion(des);
-            proyInsertar.setFechaInicio(fechIni);
-            proyInsertar.setFechaFin(fechFin);
             getProyDAO().insertarProyecto(proyInsertar);
             System.out.println("Proyecto registrado!");
             setImprimir(getProyDAO().encontrarTodos());
@@ -133,6 +165,8 @@ public class CasosMenuProyecto {
     public void actualizar() {
         int numProy;
         int resp = 0;
+        int z = 0;
+        int w = 0;
 
         getLeer().nextLine();
         try {
@@ -150,12 +184,43 @@ public class CasosMenuProyecto {
             getProyecto().setDescripcion(getLeer().nextLine());
 
             System.out.print("\nFecha inicio actual del proyecto: " + getProyecto().getFechaInicio());
-            System.out.print("\nNueva fecha inicio del proyecto (Digite la misma fecha si no quiere cambiarla, formato yyyy-mm-dd): ");
-            getProyecto().setFechaInicio(getLeer().next());
+            
+            do{
+                z = 0;
+                System.out.print("\nNueva fecha inicio del proyecto (Digite la misma fecha si no quiere cambiarla, (formato yyyy-mm-dd): ");
+                String fechIni = getLeer().next();
+                String[] separa2 = fechIni.split("-");
+                int anio = Integer.parseInt(separa2[0]);
+                int mes = Integer.parseInt(separa2[1]);
+                int dia = Integer.parseInt(separa2[2]);
+                if (anio < 2020 && anio > 1990 && mes < 13 && mes > 0 && dia < 32 && dia > 0) {
+                    getProyecto().setFechaInicio(fechIni);
+                    z = 1;
+                } else {
+                    System.out.println("Formato incorrecto, ingresa de nuevo la fecha");
+                    z = 0;
+                }
+            } while(z == 0);
 
             System.out.print("\nFecha final actual del proyecto: " + getProyecto().getFechaFin());
-            System.out.print("\nNueva fecha final del proyecto (Digite la misma fecha si no quiere cambiarla, formato yyyy-mm-dd): ");
-            getProyecto().setFechaFin(getLeer().next());
+        
+            do{
+                w = 0;
+                getLeer().nextLine(); //Limpiar buffer
+                System.out.print("\nNueva fecha final del proyecto (Digite la misma fecha si no quiere cambiarla, (formato yyyy-mm-dd): ");
+                String fechFin = getLeer().next();
+                String[] separa3 = fechFin.split("-");
+                int anio1 = Integer.parseInt(separa3[0]);
+                int mes1 = Integer.parseInt(separa3[1]);
+                int dia1 = Integer.parseInt(separa3[2]);
+                if (anio1 < 2020 && anio1 > 1990 && mes1 < 13 && mes1 > 0 && dia1 < 32 && dia1 > 0) {
+                    getProyecto().setFechaFin(fechFin);
+                    w = 1;
+                } else {
+                    System.out.println("Formato incorrecto, ingresa de nuevo la fecha");
+                    w = 0;
+                }
+            } while(w == 0);
 
             resp = getProyDAO().actualizarProyecto(getProyecto());
             System.out.println("Proyecto actualizado!\n Se actualizaron " + resp + " líneas");
@@ -182,7 +247,6 @@ public class CasosMenuProyecto {
             if (elim == 1) {
                 getAsignaDAO().eliminarTodos();
                 getTareaDAO().eliminarTodos();
-                getDesaDAO().eliminarTodos();
                 getProyDAO().eliminarTodos();
                 System.out.println("Todos los registros de proyecto han sido eliminados!");
                 setImprimir(getProyDAO().encontrarTodos());
@@ -194,8 +258,6 @@ public class CasosMenuProyecto {
                 int proy = getLeer().nextInt();
                 getProyDAO().eliminarPorID2(proy);
                 getProyDAO().eliminarPorID3(proy);
-                getProyDAO().eliminarPorID4(proy);
-                getProyDAO().eliminarPorID5(proy);
                 getProyDAO().eliminarPorID(proy);
                 System.out.println("Proyecto eliminado!");
                 setImprimir(getProyDAO().encontrarTodos());

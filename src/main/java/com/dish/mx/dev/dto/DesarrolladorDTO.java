@@ -18,7 +18,6 @@ public class DesarrolladorDTO {
     private String nombre;
     private String apPaterno;
     private String apMaterno;
-    private int proyectoId;
 
     /**
      * Constructor vacío de la clase.
@@ -39,19 +38,17 @@ public class DesarrolladorDTO {
      * @param nombre
      * @param apPaterno
      * @param apMaterno
-     * @param proyectoId
      * 
      * @since 0.0.1
      */
     public DesarrolladorDTO(int desarrolladorId, int numEmpleado, String nombre,
-            String apPaterno, String apMaterno, int proyectoId) {
+            String apPaterno, String apMaterno) {
 
         this.desarrolladorId = desarrolladorId;
         this.numEmpleado = numEmpleado;
         this.nombre = nombre;
         this.apPaterno = apPaterno;
         this.apMaterno = apMaterno;
-        this.proyectoId = proyectoId;
     }
 
     /**
@@ -90,13 +87,6 @@ public class DesarrolladorDTO {
     }
 
     /**
-     * @return the proyectoId
-     */
-    public int getProyectoId() {
-        return proyectoId;
-    }
-
-    /**
      * @param desarrolladorId the desarrolladorId to set
      */
     public void setDesarrolladorId(int desarrolladorId) {
@@ -131,16 +121,9 @@ public class DesarrolladorDTO {
         this.apMaterno = apMaterno;
     }
 
-    /**
-     * @param proyectoId the proyectoId to set
-     */
-    public void setProyectoId(int proyectoId) {
-        this.proyectoId = proyectoId;
-    }
-
     @Override
     public String toString() {
-        return "desarrolladorId=" + desarrolladorId + "\tnumEmpleado=" + numEmpleado + "\tnombre=" + nombre + "\tapPaterno=" + apPaterno + "\tapMaterno=" + apMaterno + "\tproyectoId=" + proyectoId + "\n";
+        return "desarrolladorId=" + desarrolladorId + "\tnumEmpleado=" + numEmpleado + "\tnombre=" + nombre + "\tapPaterno=" + apPaterno + "\tapMaterno=" + apMaterno + "\n";
     }
 
 }

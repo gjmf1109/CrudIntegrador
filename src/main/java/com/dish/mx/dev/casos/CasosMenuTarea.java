@@ -96,6 +96,7 @@ public class CasosMenuTarea {
             int tareaNum = leer2.nextInt();
             System.out.print("Ingresa el nombre de la tarea: ");
             String nombre = leer2.next();
+            leer2.nextLine();//Limpiar buffer
             System.out.print("Ingresa el número de proyecto al cual esta designada la tarea: ");
             int proy = leer2.nextInt();
             leer2.nextLine();//Limpiar buffer

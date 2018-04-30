@@ -174,23 +174,6 @@ public class ProyectoDAOImpl implements ProyectoDAO {
      */
     @Override
     public int eliminarPorID2(int id) {
-        return getJdbcTemplate().update("DELETE FROM asignacion_desarrollador_tarea WHERE desarrollador_id in(" +
-            "SELECT d.desarrollador_id FROM desarrollador d, proyecto p WHERE p.proyecto_id = ? " +
-            "AND p.proyecto_id = d.proyecto_id)", id);
-    }
-    
-    /**
-     * El método ejecuta un query para poder obtener todos los registros de la
-     * tabla de la base de datos de acuerdo al id introducido.
-     *
-     * @author Gerardo Martinez &lt;gerardo.martinez@dish.com.mx&gt;
-     * @param id
-     * @return Regresa el número de filas eliminadas.
-     *
-     * @since 0.0.1
-     */
-    @Override
-    public int eliminarPorID3(int id) {
         return getJdbcTemplate().update("DELETE FROM asignacion_desarrollador_tarea WHERE tarea_id in(" +
             "SELECT t.tarea_id FROM tarea t, proyecto p WHERE p.proyecto_id = ? " +
             "AND p.proyecto_id = t.proyecto_id)", id);
@@ -207,22 +190,7 @@ public class ProyectoDAOImpl implements ProyectoDAO {
      * @since 0.0.1
      */
     @Override
-    public int eliminarPorID4(int id) {
-        return getJdbcTemplate().update("DELETE FROM desarrollador WHERE proyecto_id = ?", id);
-    }
-    
-    /**
-     * El método ejecuta un query para poder obtener todos los registros de la
-     * tabla de la base de datos de acuerdo al id introducido.
-     *
-     * @author Gerardo Martinez &lt;gerardo.martinez@dish.com.mx&gt;
-     * @param id
-     * @return Regresa el número de filas eliminadas.
-     *
-     * @since 0.0.1
-     */
-    @Override
-    public int eliminarPorID5(int id) {
+    public int eliminarPorID3(int id) {
         return getJdbcTemplate().update("DELETE FROM tarea WHERE proyecto_id = ?", id);
     }
     

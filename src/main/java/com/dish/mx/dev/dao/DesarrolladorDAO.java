@@ -21,7 +21,7 @@ public interface DesarrolladorDAO {
     public DesarrolladorDTO encontrarPorId(int id);
 
     public void insertarDesarrollador(int desarrolladorId, int numEmpleado, String nombre,
-            String apPaterno, String apMaterno, int proyectoId);
+            String apPaterno, String apMaterno);
 
     public void insertarDesarrollador(DesarrolladorDTO tarea);
 

@@ -33,8 +33,4 @@ public interface ProyectoDAO {
     public int eliminarPorID2(int id);
     
     public int eliminarPorID3(int id);
-    
-    public int eliminarPorID4(int id);
-    
-    public int eliminarPorID5(int id);
 }

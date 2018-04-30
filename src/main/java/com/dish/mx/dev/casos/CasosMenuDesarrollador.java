@@ -96,14 +96,11 @@ public class CasosMenuDesarrollador {
             String apPat = getLeer().next();
             System.out.print("Ingresa el apellido materno del desarrollador: ");
             String apMat = getLeer().next();
-            System.out.print("Ingresa el número de proyecto al cual esta designado el desarrollador: ");
-            int proy = getLeer().nextInt();
             desaInsertar.setDesarrolladorId(desaNum);
             desaInsertar.setNumEmpleado(numEmp);
             desaInsertar.setNombre(nom);
             desaInsertar.setApPaterno(apPat);
             desaInsertar.setApMaterno(apMat);
-            desaInsertar.setProyectoId(proy);
             getDesaDAO().insertarDesarrollador(desaInsertar);
             System.out.println("Desarrollador registrado!");
             setImprimir(getDesaDAO().encontrarTodos());
@@ -145,10 +142,6 @@ public class CasosMenuDesarrollador {
             System.out.print("\nApellido materno actual del desarrollador: " + getDesa().getApMaterno());
             System.out.print("\nNuevo apellido materno del desarrollador (Digite el mismo apellido si no quiere cambiarlo): ");
             getDesa().setApMaterno(getLeer().next());
-
-            System.out.print("\nNúmero actual de proyecto al cual esta designado el desarrollador: " + getDesa().getProyectoId());
-            System.out.print("\nNuevo número de proyecto (Digite el mismo numero si no quiere cambiarlo): ");
-            getDesa().setProyectoId(getLeer().nextInt());
 
             resp = getDesaDAO().actualizarDesarrollador(getDesa());
             System.out.println("Desarrollador actualizado!\n Se actualizaron " + resp + " líneas");

@@ -37,6 +37,6 @@ public class DesarrolladorRowMapper implements RowMapper<DesarrolladorDTO>{
     @Override
     public DesarrolladorDTO mapRow(ResultSet rs, int rowNum) throws SQLException {
         return new DesarrolladorDTO(rs.getInt("desarrollador_id"), rs.getInt("num_empleado"), rs.getString("nombre"),
-                rs.getString("ap_paterno"), rs.getString("ap_materno"), rs.getInt("proyecto_id"));
+                rs.getString("ap_paterno"), rs.getString("ap_materno"));
     }
 }

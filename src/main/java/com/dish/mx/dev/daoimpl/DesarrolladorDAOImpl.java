@@ -85,16 +85,15 @@ public class DesarrolladorDAOImpl implements DesarrolladorDAO {
      * @param nombre
      * @param apPaterno
      * @param apMaterno
-     * @param proyectoId
      * 
      * @since 0.0.1
      */
     @Override
     public void insertarDesarrollador(int desarrolladorId, int numEmpleado, String nombre, String apPaterno,
-            String apMaterno, int proyectoId) {
+            String apMaterno) {
         getJdbcTemplate().update("INSERT INTO desarrollador (desarrollador_id, num_empleado, nombre, ap_paterno, "
-                + "ap_materno, proyecto_id) "
-                + "VALUES(?,?,?,?,?,?)", desarrolladorId, numEmpleado, nombre, apPaterno, apMaterno, proyectoId);
+                + "ap_materno) "
+                + "VALUES(?,?,?,?,?)", desarrolladorId, numEmpleado, nombre, apPaterno, apMaterno);
     }
 
     /**
@@ -111,9 +110,9 @@ public class DesarrolladorDAOImpl implements DesarrolladorDAO {
     @Override
     public void insertarDesarrollador(DesarrolladorDTO tarea) {
         getJdbcTemplate().update("INSERT INTO desarrollador (desarrollador_id, num_empleado, nombre, ap_paterno, "
-                + "ap_materno, proyecto_id) "
-                + "VALUES(?,?,?,?,?,?)", tarea.getDesarrolladorId(), tarea.getNumEmpleado(), tarea.getNombre(),
-                tarea.getApPaterno(), tarea.getApMaterno(), tarea.getProyectoId());
+                + "ap_materno) "
+                + "VALUES(?,?,?,?,?)", tarea.getDesarrolladorId(), tarea.getNumEmpleado(), tarea.getNombre(),
+                tarea.getApPaterno(), tarea.getApMaterno());
     }
 
     /**
@@ -135,9 +134,9 @@ public class DesarrolladorDAOImpl implements DesarrolladorDAO {
         //Un update me regresa el número de filas actualizadas, es por eso
         //que el resultado es asignado a una variable de tipo int.
         return resp = getJdbcTemplate().update("UPDATE desarrollador SET num_empleado = ?, "
-                + "nombre = ?, ap_paterno = ?, ap_materno = ?, proyecto_id = ? "
-                + "WHERE  desarrollador_id = ?", new Object[]{tarea.getNumEmpleado(), tarea.getNombre(), tarea.getApPaterno(),
-                    tarea.getApMaterno(), tarea.getProyectoId(), tarea.getDesarrolladorId()});
+                + "nombre = ?, ap_paterno = ?, ap_materno = ? "
+                + "WHERE  desarrollador_id = ?", new Object[]{tarea.getNumEmpleado(), tarea.getNombre(), 
+                    tarea.getApPaterno(), tarea.getApMaterno(), tarea.getDesarrolladorId()});
     }
 
     /**
